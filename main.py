@@ -10,11 +10,10 @@ page = requests.get(url)
 soup = bs4.BeautifulSoup(page.text, 'html.parser')
 
 #we go to the articles section
-articles_section = soup.find(id="articles")
-arcticle_all = articles_section.find_all('article', class_='rpa-article-card')
+articles_section = soup.find(id="articles").find_all('article', class_='rpa-article-card')
 
 #we make a list with the data from the article section
-data_export = [[(tag.findChild('a')['title']), ' '.join((tag.find('li').string.split()[1:])), (tag.findChild('a')['href'])] for tag in arcticle_all]
+data_export = [[(tag.findChild('a')['title']), ' '.join((tag.find('li').string.split()[1:])), (tag.findChild('a')['href'])] for tag in articles_section]
 data_rev = data_export[::-1]
 
 #create excel sheet 
