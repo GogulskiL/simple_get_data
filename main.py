@@ -1,6 +1,7 @@
+from datetime import date
 import requests
 import bs4
-from openpyxl import Workbook
+from openpyxl import Workbook, workbook
 
 # download the page
 url = 'https://rpa.hybrydoweit.pl'
@@ -68,5 +69,15 @@ def create_excel_file(name_cell_1, name_cell_2, name_cell_3):
     sheet1.cell(row=1, column=3).value = name_cell_3
     wb.save("data_file.xlsx")
 
-def fill_excel_file():
-    pass
+def fill_excel_file(excel_file, url):
+    wb = create_excel_file(title, industry, link)
+    data = get_article_data(url)
+    data_rev = get_article_data_reverse(url)
+    for i in range(2, 7):
+        for k in range(0, 3):
+            sheet.cell(row=i, column=k+1).value = data[i-2][k]
+
+    for i in range(2, 7):
+        for k in range(0, 3):
+            sheet1.cell(row=i, column=k+1).value = data_rev[i-2][k]
+    
