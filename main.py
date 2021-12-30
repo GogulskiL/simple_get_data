@@ -60,8 +60,8 @@ def get_article_data_reverse(url):
 
 def create_excel_file(excel_file_name, number_sheet):
     wb = Workbook()
-    for i in range(number_sheet-1):
-        sheet = wb.create_sheet(f"Sheet{i}")
+    for sheet in range(number_sheet-1):
+        sheet = wb.create_sheet(f"Sheet{sheet}")
     wb.save(f"{excel_file_name}.xlsx")
 
 
