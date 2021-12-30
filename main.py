@@ -58,17 +58,14 @@ def get_article_data_reverse(url):
 # wb.save("excel_file.xlsx")
 
 
-def create_excel_file(excel_file_name, number_sheet, name_cell_1, name_cell_2, name_cell_3):
+def create_excel_file(excel_file_name, number_sheet):
     wb = Workbook(excel_file_name)
-    for sheet in range(number_sheet-1):
+    for sheet in range(number_sheet):
         sheet = wb.create_sheet(f"Sheet{sheet}")
-        sheet.cell(row=1, column=1).value = name_cell_1
-        sheet.cell(row=1, column=2).value = name_cell_2
-        sheet.cell(row=1, column=3).value = name_cell_3
     wb.save(f"{excel_file_name}.xlsx")
 
 
-create_excel_file("sfds", 6, title, industry, link)
+create_excel_file("sfds", 7)
 
 
 # def create_column(name_cell_1, name_cell_2, name_cell_3, excel_file, number_sheet):
