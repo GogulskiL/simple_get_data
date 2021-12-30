@@ -56,21 +56,30 @@ def get_article_data_reverse(url):
 
 # # save sheet
 # wb.save("excel_file.xlsx")
-def create_excel_file(name_cell_1, name_cell_2, name_cell_3):
+
+
+def create_excel_file(excel_file_name, number_sheet):
     wb = Workbook()
-    sheet = wb.active
-    sheet1 = wb.create_sheet("Sheet1")
-    sheet.cell(row=1, column=1).value = name_cell_1
-    sheet.cell(row=1, column=2).value = name_cell_2
-    sheet.cell(row=1, column=3).value = name_cell_3
-
-    sheet1.cell(row=1, column=1).value = name_cell_1
-    sheet1.cell(row=1, column=2).value = name_cell_2
-    sheet1.cell(row=1, column=3).value = name_cell_3
-    wb.save("data_file.xlsx")
+    for i in range(number_sheet-1):
+        sheet = wb.create_sheet(f"Sheet{i}")
+    wb.save(f"{excel_file_name}.xlsx")
 
 
-def fill_excel_file(excel_file, url):
+def create_column(name_cell_1, name_cell_2, name_cell_3, excel_file):
+    excel_file = create_excel_file
+
+    # sheet.cell(row=1, column=1).value = name_cell_1
+    # sheet.cell(row=1, column=2).value = name_cell_2
+    # sheet.cell(row=1, column=3).value = name_cell_3
+
+    # sheet1.cell(row=1, column=1).value = name_cell_1
+    # sheet1.cell(row=1, column=2).value = name_cell_2
+    # sheet1.cell(row=1, column=3).value = name_cell_3
+    pass
+
+
+def fill_excel_file(excel_file, url, title, ):
+    excel_file = excel_file
     wb = create_excel_file(title, industry, link)
     data = get_article_data(url)
     data_rev = get_article_data_reverse(url)
@@ -81,3 +90,5 @@ def fill_excel_file(excel_file, url):
     for i in range(2, 7):
         for k in range(0, 3):
             sheet1.cell(row=i, column=k+1).value = data_rev[i-2][k]
+
+    return excel_file
