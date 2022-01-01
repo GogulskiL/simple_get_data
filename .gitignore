@@ -131,3 +131,6 @@ dmypy.json
 
 #outpunt
 *.xlsx
+
+sfds.xlsx
+testy.py

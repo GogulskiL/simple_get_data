@@ -56,7 +56,11 @@ def get_article_data_reverse(url):
 
 # # save sheet
 # wb.save("excel_file.xlsx")
+# create excel sheet
 
+# wb = Workbook()
+# sheet = wb.active
+# sheet1 = wb.create_sheet("Sheet1")
 
 def create_excel_file(excel_file_name, number_sheet):
     wb = Workbook(excel_file_name)
@@ -65,12 +69,13 @@ def create_excel_file(excel_file_name, number_sheet):
     wb.save(f"{excel_file_name}.xlsx")
 
 
-create_excel_file("sfds", 7)
 
 
-# def create_column(name_cell_1, name_cell_2, name_cell_3, excel_file, number_sheet):
-#     excel_file = create_excel_file(excel_file, number_sheet)
-#     for row in number_sheet.rows:
+def create_column(name_cell_1, name_cell_2, name_cell_3, excel_file, number_sheet):
+    excel_file = Workbook(create_excel_file(excel_file, number_sheet))
+    sheet = excel_file.active()
+    
+    
 # sheet.cell(row=1, column=1).value = "Tytuł"
 # sheet.cell(row=1, column=2).value = "Branża/dział"
 # sheet.cell(row=1, column=3).value = "Link"
