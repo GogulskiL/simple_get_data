@@ -1,5 +1,5 @@
 # task_solution_first
-first solution using bs4, requests and openpyxl
+script to download articles from the website, using libraries bs4, requests and openpyxl
 
 1. clone repo
 
