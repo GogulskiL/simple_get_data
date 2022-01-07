@@ -28,7 +28,7 @@ def get_article_data_reverse(url):
     return get_article_data(url)[::-1]
 
 
-def fill_file(url):
+def create_file(name_file, url):
     title = "Tytuł"
     industry = "Branża/tytuł"
     link = "Link"
@@ -52,7 +52,7 @@ def fill_file(url):
     for i in range(2, 7):
         for k in range(0, 3):
             sheet1.cell(row=i, column=k+1).value = data_rev[i-2][k]
-    wb.save("excel.xlsx")
+    wb.save(f"{name_file}.xlsx")
 
 
-fill_file(url)
+create_file("prrrr", url)
