@@ -2,7 +2,6 @@ import requests
 import bs4
 from openpyxl import Workbook
 
-# download the page
 url = 'https://rpa.hybrydoweit.pl'
 title = "Title"
 industry = "Industry"
@@ -29,19 +28,31 @@ def get_article_data_reverse(url):
     return get_article_data(url)[::-1]
 
 
-def create_excel_file(excel_file_name, name_cell_1, name_cell_2, name_cell_3):
+def fill_file(url):
+    title = "Tytuł"
+    industry = "Branża/tytuł"
+    link = "Link"
+    data_export = get_article_data(url)
+    data_rev = get_article_data_reverse(url)
     wb = Workbook()
     sheet = wb.active
-    sheet_1 = wb.create_sheet()
-    sheet.cell(row=1, column=1).value = name_cell_1
-    sheet.cell(row=1, column=2).value = name_cell_2
-    sheet.cell(row=1, column=3).value = name_cell_3
+    sheet1 = wb.create_sheet("Sheet1")
 
-    sheet_1.cell(row=1, column=1).value = name_cell_1
-    sheet_1.cell(row=1, column=2).value = name_cell_2
-    sheet_1.cell(row=1, column=3).value = name_cell_3
+    sheet.cell(row=1, column=1).value = sheet1.cell(
+        row=1, column=1).value = title
+    sheet.cell(row=1, column=2).value = sheet1.cell(
+        row=1, column=2).value = industry
+    sheet.cell(row=1, column=3).value = sheet1.cell(
+        row=1, column=3).value = link
 
-    wb.save(f"{excel_file_name}.xlsx")
+    for i in range(2, 7):
+        for k in range(0, 3):
+            sheet.cell(row=i, column=k+1).value = data_export[i-2][k]
+
+    for i in range(2, 7):
+        for k in range(0, 3):
+            sheet1.cell(row=i, column=k+1).value = data_rev[i-2][k]
+    wb.save("excel.xlsx")
 
 
-# create_excel_file("a", title, industry, link)
+fill_file(url)
